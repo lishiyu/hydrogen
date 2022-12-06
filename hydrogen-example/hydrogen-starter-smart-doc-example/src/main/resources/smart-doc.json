@@ -1,0 +1,15 @@
+{
+  "isStrict": false,
+  "allInOne": true,
+  "outPath": "src/main/resources/static/doc",
+  "projectName": "hydrogen-starter-smart-doc-example",
+  "allInOneDocFileName": "index.html",
+  "revisionLogs": [
+    {
+      "version": "1.0",
+      "status": "update",
+      "author": "李同学",
+      "remarks": "hydrogen-starter-smart-doc-example 接口文档"
+    }
+  ]
+}

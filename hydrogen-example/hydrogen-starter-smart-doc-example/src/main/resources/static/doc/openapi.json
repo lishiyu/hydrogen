@@ -1,0 +1,22 @@
+{
+  "components": {
+    "schemas": {
+      "string": {
+        "format": "string",
+        "type": "string"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": ""
+    }
+  ],
+  "openapi": "3.0.3",
+  "paths": {},
+  "info": {
+    "title": "测试",
+    "version": "1.0.0"
+  },
+  "tags": []
+}

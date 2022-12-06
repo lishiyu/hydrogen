@@ -1,0 +1,6 @@
+logging:
+  config: logback-spring.xml
+plumelog:
+  appName: plumelog_demo
+  redisHost: 125.124.222.34:63790
+  redisAuth: zs94Power

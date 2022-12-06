@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.net.hylink.hydrogen.core.config.HealthIndicatorConfig,\
+  cn.net.hylink.hydrogen.core.config.CommonConfig,\
+  cn.net.hylink.hydrogen.core.config.DruidStatViewConfig,\
+  cn.net.hylink.hydrogen.core.config.PageConfig
+
+org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
+cn.net.hylink.hydrogen.core.config.AutoConfigFilter
