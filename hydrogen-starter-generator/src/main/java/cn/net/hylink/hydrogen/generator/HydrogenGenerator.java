@@ -41,7 +41,7 @@ public class HydrogenGenerator {
     public void generateMVC() {
         String projectPath = System.getProperty("user.dir");
         String parentPackageName = scanner("父包名");
-        String outputDirPath = projectPath + "/hydrogen-example/hydrogen-starter-generator-example/src/main/java";
+        String outputDirPath = projectPath + "/src/main/java";
         String moduleName = scanner("模块名");
 
         FastAutoGenerator.create(new DataSourceConfig.Builder(url,username,password).schema(schemaName))
@@ -60,7 +60,7 @@ public class HydrogenGenerator {
                         // OutputFile.mapperXml, projectPath + "/hydrogen-example/hydrogen-starter-generator-example/src/main/resources/mapper"
                         .pathInfo(MapBuilder.create(new HashMap<OutputFile, String>(10))
                                 .put(OutputFile.controller, StrUtil.join("/", outputDirPath, StrUtil.replace(parentPackageName, ".", "/"), moduleName, "app", "web"))
-                                .put(OutputFile.mapperXml, projectPath + "/hydrogen-example/hydrogen-starter-generator-example/src/main/resources/mapper")
+                                .put(OutputFile.mapperXml, projectPath + "/src/main/resources/mapper")
                                 .put(OutputFile.other, projectPath + "/hydrogen-example/hydrogen-starter-generator-example/src/main/java/pojo/dto")
                                 .build()))
                 .strategyConfig(builder -> builder

@@ -24,8 +24,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.4</version>
-            <scope>provided</scope>
         </dependency>
         <!-- hutool开源易用工具包 -->
         <dependency>
