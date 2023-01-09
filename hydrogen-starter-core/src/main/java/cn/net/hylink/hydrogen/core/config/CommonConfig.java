@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -62,13 +63,14 @@ public class CommonConfig {
     /**
      * 跨域访问设置
      */
-    @Bean
+//    @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("*"); // 允许任何域名使用
+//        corsConfiguration.addAllowedOrigin("*"); // 允许任何域名使用
         corsConfiguration.addAllowedHeader("*"); // 允许任何头
         corsConfiguration.addAllowedMethod("*"); // 允许任何方法（post、get等）
+        corsConfiguration.addAllowedOriginPattern("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration); // 4
         return new CorsFilter(source);
@@ -108,6 +110,20 @@ public class CommonConfig {
                 localeInterceptor.setParamName("lang");
                 registry.addInterceptor(localeInterceptor);
             }
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                // 设置允许跨域的路由
+//                registry.addMapping("/**")
+//                        // 设置允许跨域请求的域名
+//                        .allowedOrigins("*")    // 注意此处
+//                        // 是否允许证书（cookies）
+//                        .allowCredentials(true)
+//                        // 设置允许的方法
+//                        .allowedMethods("*")
+//                        // 跨域允许时间
+//                        .maxAge(3600);
+//            }
+
         };
     }
 

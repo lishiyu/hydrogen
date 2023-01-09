@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Request;
 import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -25,12 +27,15 @@ import java.util.*;
 @ConditionalOnClass({ RequestInterceptor.class })
 public class UserInfoRequestInterceptor {
 
-    @Value("${request.header:}")
-    private List<RequestHeaderProperty> requestHeaderProperty;
+    public static int connectTimeOutMillis = 90000;// 超时时间
+    public static int readTimeOutMillis = 90000;
+
+    @Resource
+    private RequestHeaderProperty questHeaderProperty;
 
     @Bean
     public Request.Options options() {
-        return new Request.Options();
+        return new Request.Options(connectTimeOutMillis, readTimeOutMillis);
     }
 
     @Bean
@@ -46,7 +51,7 @@ public class UserInfoRequestInterceptor {
                 HttpServletRequest request = attributes.getRequest();
                 Map<String, Collection<String>> headers = new HashMap<>();
 
-                for (RequestHeaderProperty property: requestHeaderProperty) {
+                for (RequestHeaderProperty.Property property: questHeaderProperty.getProperties()) {
                     // 获取需要传递的头信息
                     if (HeaderType.SINGLETON == property.getHeaderType()) {
                         headers.put(property.getHeaderName(), Collections.singletonList(request.getHeader(property.getHeaderName())));

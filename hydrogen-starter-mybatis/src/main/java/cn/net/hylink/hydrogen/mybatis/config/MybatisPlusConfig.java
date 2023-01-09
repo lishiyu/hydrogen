@@ -32,6 +32,7 @@ public class MybatisPlusConfig {
             public void insertFill(MetaObject metaObject) {
                 this.setFieldValByName(BasicPo.Fields.updatedAt, LocalDateTime.now(), metaObject);
                 this.setFieldValByName(BasicPo.Fields.createdAt, LocalDateTime.now(), metaObject);
+                this.setFieldValByName(BasicPo.Fields.deleted, 0, metaObject);
             }
 
             @Override

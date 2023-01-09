@@ -22,10 +22,10 @@ public class DatabaseExceptionHandlerAdvice {
      * 处理DataAccessException异常
      */
     @ExceptionHandler(DataAccessException.class)
-    public ResponseEntity<ErrorResult> handleDataAccessException(DataAccessException e, HttpServletRequest request) {
+    public ResponseEntity<ErrorResult<?>> handleDataAccessException(DataAccessException e, HttpServletRequest request) {
         log.error("handleDataAccessException, uri:{}, exception:{}, caused by: {}", request.getRequestURI(),
                 e.getClass(), e.getMessage(), e);
-        ErrorResult result = ErrorResult.error(ResultCode.DATABASE_ERROR, e, HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorResult<?> result = ErrorResult.error(ResultCode.DATABASE_ERROR, e, HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(result, HttpStatus.valueOf(result.getStatus()));
     }
 }

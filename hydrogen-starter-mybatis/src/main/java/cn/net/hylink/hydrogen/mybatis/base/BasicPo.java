@@ -24,7 +24,6 @@ public class BasicPo implements Serializable {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

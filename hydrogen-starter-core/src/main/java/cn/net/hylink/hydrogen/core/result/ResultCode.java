@@ -15,12 +15,12 @@ public enum ResultCode {
 	/**
 	 * 操作成功状态码
 	 */
-	SUCCESS(1, "operate.result.success"),
+	SUCCESS(200, "operate.result.success"),
 
 	/**
 	 * 操作失败状态码
 	 */
-	FAILURE(0, "operate.result.failure"),
+	FAILURE(500, "operate.result.failure"),
 
 	/**
 	 * 无访问权限
