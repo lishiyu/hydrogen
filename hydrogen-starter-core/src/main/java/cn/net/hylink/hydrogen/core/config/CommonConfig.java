@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -63,11 +66,12 @@ public class CommonConfig {
     /**
      * 跨域访问设置
      */
-//    @Bean
+    @Bean
+    @ConditionalOnMissingClass("com.alibaba.cloud.nacos.NacosServiceAutoConfiguration")
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-//        corsConfiguration.addAllowedOrigin("*"); // 允许任何域名使用
+        corsConfiguration.addAllowedOrigin("*"); // 允许任何域名使用
         corsConfiguration.addAllowedHeader("*"); // 允许任何头
         corsConfiguration.addAllowedMethod("*"); // 允许任何方法（post、get等）
         corsConfiguration.addAllowedOriginPattern("*");
@@ -96,35 +100,6 @@ public class CommonConfig {
         messageSource.setBasenames("i18n/message", "i18n/message-core");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
-    }
-
-    /**
-     * 默认拦截器 其中lang表示切换语言的参数名
-     */
-    @Bean
-    public WebMvcConfigurer localeInterceptor() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
-                localeInterceptor.setParamName("lang");
-                registry.addInterceptor(localeInterceptor);
-            }
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                // 设置允许跨域的路由
-//                registry.addMapping("/**")
-//                        // 设置允许跨域请求的域名
-//                        .allowedOrigins("*")    // 注意此处
-//                        // 是否允许证书（cookies）
-//                        .allowCredentials(true)
-//                        // 设置允许的方法
-//                        .allowedMethods("*")
-//                        // 跨域允许时间
-//                        .maxAge(3600);
-//            }
-
-        };
     }
 
     /**

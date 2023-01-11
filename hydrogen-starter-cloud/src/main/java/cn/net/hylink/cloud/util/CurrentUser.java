@@ -24,7 +24,7 @@ import java.util.List;
 public class CurrentUser {
 
     // 用户ID
-    private String id;
+    private Object id;
     // 用户姓名
     private String name;
     // 登录账号
@@ -79,7 +79,13 @@ public class CurrentUser {
             if (req.getHeader(Constant.ID) == null) {
                 return user;
             }
-            user.id = req.getHeader(Constant.ID);
+            try {
+                user.id = Long.valueOf(req.getHeader(Constant.ID));
+            } catch (NumberFormatException e) {
+                user.id = req.getHeader(Constant.ID);
+                log.error("用户Id转换类型失败，错误信息:{}", e.getMessage(), e);
+
+            }
             try {
                 user.name = URLDecoder.decode(req.getHeader(Constant.NAME), "UTF-8");
 

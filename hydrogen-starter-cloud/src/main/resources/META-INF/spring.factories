@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.net.hylink.cloud.config.UserInfoRequestInterceptor
+  cn.net.hylink.cloud.config.UserInfoRequestInterceptor,\
+  cn.net.hylink.cloud.config.CurrentUserIdConfiguration

@@ -8,9 +8,9 @@ public class PageRequest {
     /**
      * 页大小
      */
-    private long pageSize = 10;
+    private long size = 10;
     /**
      * 当前页数
      */
-    private long pageIndex = 1;
+    private long current = 1;
 }

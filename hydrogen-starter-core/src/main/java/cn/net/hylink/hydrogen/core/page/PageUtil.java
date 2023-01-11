@@ -18,7 +18,7 @@ public class PageUtil {
             return new Page<>(1, 10);
         }
 
-        return new Page<>(pageRequest.getPageIndex(), pageRequest.getPageSize());
+        return new Page<>(pageRequest.getCurrent(), pageRequest.getSize());
     }
 
     /**
@@ -90,7 +90,7 @@ public class PageUtil {
 
     public static <T> PageVo<T> empty(PageRequest pageRequest) {
         PageVo<T> result = new PageVo<>();
-        result.setPage(new Page<>(pageRequest.getPageIndex(), pageRequest.getPageSize()));
+        result.setPage(new Page<>(pageRequest.getCurrent(), pageRequest.getSize()));
         return result;
     }
 
